@@ -7,70 +7,40 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: "/",
-        name: "forumHome",
-        component: () => import("../components/ForumHome/ForumHome.vue")
+        name: "ForumHome",
+        component: () => import("../components/Forum/ForumHome.vue")
     },
     {
-        path: "/login",
-        name: "login",
+        path: "/Login",
+        name: "Login",
         component: () => import("../components/Login.vue")
     },
     {
-        path: "/loginbackstage",
-        name: "loginbackstage",
-        component: () => import("../components/BackStageHome/LoginBackStage.vue")
-    },
-
-    {
-        path: "/BackStageHome",
-        component: () => import("../components/BackStageHome/BackStageHome.vue"),
-        children: [
-            {
-                path: "/usermanger",
-                name: "usermanger",
-                component: () => import("../components/BackStageHome/UserManger.vue")
-            },
-            {
-                path: "/articlemanger",
-                name: "articlemanger",
-                component: () => import("../components/BackStageHome/ArticleManger.vue")
-            },
-            {
-                path: "/typemanger",
-                name: "typemanger",
-                component: () => import("../components/BackStageHome/TypeManger.vue")
-            }
-        ]
+        path: "/Register",
+        name: "Register",
+        component: () => import("../components/Register.vue")
     },
     {
         path: "/UserHome",
+        name: "UserHome",
         meta: {requireAuth: true},
-        component: () => import("../components/UserHome/UserHome")
+        component: () => import("../components/User/UserHome.vue")
     },
     {
-        path: "/allarticlehome",
-        component: () => import("../components/ArticleHome/AllArticleHome.vue")
+        path: "/PostDetail",
+        name: "PostDetail",
+        component: () => import("../components/Post/PostDetail.vue")
     },
 
-    {
-        path: "/registerhome",
-        component: () => import("../components/Register/RegisterHome")
-    },
 
-    {
-        path: "*", component: NotFoundComponent
-    },
-    {
-        path: "/details",
-        name: "Details",
-        component: () => import("../components/ArticleHome/Details")
-    },
     {
         path: "/postarticle",
         name: "PostArticle",
-        component: () => import("../components/ArticleHome/PostArticle")
-    }
-    ,
+        component: () => import("../components/Post/CreatePostForm.vue")
+    },
+    {
+        path: "*", component: NotFoundComponent
+    },
 ];
 
 const router = new VueRouter({

@@ -1,122 +1,116 @@
 import axios from "axios";
-import Qs from "qs";
-import { SnackbarProgrammatic as Snackbar } from "buefy";
 
 //全局默认配置
-axios.defaults.baseURL = "http://localhost:9090";
-// axios.interceptors.request.use(
-//     config => {
-//         console.log(config);
-//         return config;
-//     },
-//     err => {
-//         console.log(err);
-//     }
-// );请求拦截
-axios.defaults.withCredentials = true; //请求发送cookie
-
-axios.interceptors.response.use(
-  res => {
-    return res;
-  },
-  () => {
-    Snackbar.open({
-      message: "服务器被吃了",
-      type: "is-warning",
-      position: "is-top",
-      actionText: "Retry",
-      indefinite: true,
-      onAction: () => {
-        this.$buefy.toast.open({
-          message: "Action pressed",
-          queue: false
-        });
-      }
-    });
-  }
-);
-
-//post传数据用data，get传参数用params
-export const adminLogin = (username, password) => {
-  return axios.post("/loginbackstage", Qs.stringify({ username, password }));
-};
-
-export const userLogin = (email, password) => {
-  return axios.post(
-    "http://localhost:9090/userlogin",
-    Qs.stringify({ email, password })
-  );
-};
-
-export const getAllArticle = page => {
-  return axios.post("/pagearticle", Qs.stringify({ page }));
-};
-
-export const getAllArticleType = () => {
-  return axios.post("/getallarticletype");
-};
-
-export const getArticleByTypeId = typeId => {
-  return axios.post("/getarticlebytypeid", Qs.stringify({ typeId }));
-};
-
-export const getHotArticleType = () => {
-  return axios.post("/gethotarticletype");
-};
-
-export const getPageMain = pageNum => {
-  return axios({
-    url: "/getpagearticle",
-    params: {
-      page: pageNum
+axios.defaults.baseURL = "http://localhost:9991";
+axios.defaults.withCredentials = true;
+const config = {
+    headers: {
+        "Content-Type": "application/json",
+        // 'Access-Control-Allow-Origin': 'http://127.0.0.1:8080', // Set the allowed origin for the request
+        // 'Access-Control-Allow-Credentials': true, // Allow cookies to be sent with the request
     }
-  });
 };
 
-export const getnew = () => {
-  return axios("/getnew");
+export const userLogin = (username, password) => {
+    return axios.post(
+        "/signIn",
+        JSON.stringify({username, password}),
+        config
+    );
+    // return axios({
+    //     // url: " http://175.178.196.147:9991/signIn",
+    //     url: "/signIn",
+    //     method: "post",
+    //     data: {
+    //         username: username,
+    //         password: password,
+    //     },
+    // });
+    // }
 };
 
-export const gethotuser = () => {
-  return axios("/hotuser");
-};
-export const register = (
-  userName,
-  userPassword,
-  userShow,
-  userEmail,
-  userPhone,
-  userSex
-) => {
-  return axios.post(
-    "/register",
-    Qs.stringify({
-      userName,
-      userPassword,
-      userShow,
-      userEmail,
-      userPhone,
-      userSex
-    })
-  );
-};
-export const getcomment = artId => {
-  return axios.post("/getComment", Qs.stringify({ artId }));
-};
-export const newcomment = (comArtId, text, comUserId) => {
-  return axios.post(
-    "/postcomment",
-    Qs.stringify({ comArtId, text, comUserId })
-  );
-};
-export const newpost = (userId, title, text, select) => {
-  return axios.post("/newpost", Qs.stringify({ userId, title, text, select }));
+export const userRegister = (username, password, password2, email) => {
+    return axios.post(
+        "/signUp",
+        JSON.stringify({username, password, password2, email}),
+        config
+    );
 };
 
-export const findartbyuserid = userId => {
-  return axios.post("/findartbyuserid", Qs.stringify({ userId }));
+export const getAllPost = () => {
+    return axios.get(
+        "/get_post",
+        JSON.stringify({}),
+        config
+    );
 };
 
-export const getuserlist = () => {
-  return axios.post("/getuserlist");
+export const getAllPostDetail = (post_id) => {
+    return axios.post(
+        "/post_detail",
+        JSON.stringify({post_id}),
+        config
+    );
 };
+
+export const getTravelPicture = (city) => {
+    return axios.get("/mashup/city_pics", {
+        params: {
+            city: city
+        },
+        config
+    });
+}
+
+export const getTravelWeather = (city) => {
+    return axios.get(
+        "/mashup/forecast",
+        {
+            params: {
+                city: city
+            },
+            config
+        });
+}
+
+export const getUserPost = () => {
+    return axios.get(
+        "/post/my_posts",
+        {
+            params: {},
+            config
+        });
+};
+
+export const createComment = (post_id, content) => {
+    return axios.post(
+        "/comment/make",
+        JSON.stringify({post_id, content}),
+        config
+    );
+};
+
+export const createPost = (title, destination, start_date, end_date, tags) => {
+    return axios.post(
+        "/post/create",
+        JSON.stringify({title, destination, start_date, end_date, tags}),
+        config
+    );
+}
+
+export const deletePost = (post_id) => {
+    return axios.post(
+        "/post/delete",
+        JSON.stringify({post_id}),
+        config
+    );
+}
+
+export const editPost = (post_id, title, destination, start_date, end_date, tags) => {
+    return axios.post(
+        "/post/edit",
+        JSON.stringify({post_id, title, destination, start_date, end_date, tags}),
+        config
+    );
+}
+

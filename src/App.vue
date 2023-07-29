@@ -1,12 +1,10 @@
 <template>
   <div id="app">
     <router-view v-if="isRouterAlive"></router-view>
-    <scroll-top/>
   </div>
 </template>
 
 <script>
-import ScrollTop from "@/components/ScrollTop.vue";
 
 export default {
   provide() {
@@ -18,9 +16,6 @@ export default {
     return {
       isRouterAlive: true
     }
-  },
-  components: {
-    "scroll-top": ScrollTop
   },
   methods: {
     reload() {
