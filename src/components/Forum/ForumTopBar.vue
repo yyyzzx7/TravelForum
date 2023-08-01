@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <template>
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="navbar-brand"></div>
@@ -12,7 +13,7 @@
           </div>
           <div class="level-item">
             <div class="field has-addons">
-              <b-input v-model="searchInput" type="text" placeholder="Find travel ideas" style="width: 300px"/>
+              <b-input v-model="searchInput" type="text" placeholder="Find travel ideas" style="width: 300px"></b-input>
               <b-button @click="searchPost(searchInput, searchType)">Search</b-button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <b-radio v-model="searchType" native-value="tag">Tag</b-radio>
@@ -65,7 +66,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

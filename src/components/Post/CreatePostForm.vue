@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <template>
   <form action="">
     <div class="modal-card">
@@ -124,7 +125,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .modal-card {
   height: 600px;
   width: 600px;

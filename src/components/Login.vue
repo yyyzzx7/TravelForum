@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <template>
   <div>
     <template>
@@ -10,7 +11,6 @@
     <template>
       <div id="Wrapper">
         <div class="content">
-
           <div id="main">
             <div class="sep20"></div>
             <div class="box">
@@ -77,7 +77,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .box {
   background-color: #fff;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
@@ -91,25 +91,6 @@ export default {
   text-align: left;
   border-bottom: 1px solid #e2e2e2;
   overflow: auto;
-}
-
-.cell {
-  padding: 10px;
-  font-size: 14px;
-  line-height: 120%;
-  text-align: left;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-.left-bar {
-  width: 0;
-  float: left;
-}
-
-.Rightbar {
-  width: 270px;
-  float: right;
-  margin-right: 20px;
 }
 
 .main {

@@ -1,6 +1,6 @@
+<!DOCTYPE html>
 <template>
   <section>
-
     <div class="content-wrapper">
       <div class="content">
         <div class="sep20"/>
@@ -9,7 +9,6 @@
             Welcome {{ $store.state.loginUsername }}!&nbsp;&nbsp;&nbsp;&nbsp;Click here to create your travel idea!
           </p>
         </b-button>
-
         <div class="box" v-for="(post, i) in userPost" :key="i">
           <section class="main">
             <div class="box">
@@ -31,7 +30,6 @@
                 </b-button>
               </div>
             </div>
-            <!--          <div class="manage-box">-->
             <div class="buttons">
               <b-button type="is-success is-light" class="manage-button" @click="checkPost(i)">Info</b-button>
               <b-button type="is-info is-light" class="manage-button" @click="editPost(i)">Edit</b-button>
@@ -158,7 +156,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .content-wrapper {
   background-color: #e2e2e2;
   background-repeat: repeat-x, repeat-x;

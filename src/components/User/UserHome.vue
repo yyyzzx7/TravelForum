@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <template>
   <div id="user-home">
-    <UserTopBar/>
-    <UserPost/>
+    <UserTopBar></UserTopBar>
+    <UserPost></UserPost>
   </div>
 </template>
 

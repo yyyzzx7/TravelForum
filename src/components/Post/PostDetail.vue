@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <template>
   <div id="app">
     <section>
@@ -43,7 +44,7 @@
                 <div class="post-info">{{ post.destination }}</div>
               </div>
               <div class="mashup-weather">
-                <LineChart :chart-data="cityWeather"/>
+                <LineChart :chart-data="cityWeather"></LineChart>
               </div>
             </div>
           </section>
@@ -51,7 +52,7 @@
 
         <section class="main">
           <section id="post-main">
-            <div class="sep20"/>
+            <div class="sep20"></div>
             <div class="box">
               <div class="header">
                 <p class="author">Author: {{ post.username }}</p>
@@ -80,7 +81,7 @@
           </section>
           <!--        Comment List        -->
           <section id="post-comment">
-            <div class="sep20"/>
+            <div class="sep20"></div>
             <div class="box">
               <div class="cell">
                 <strong>Comment</strong>
@@ -92,7 +93,7 @@
                     <td class="avatar">
                       <img :src="require(`@/assets/user1.jpg`)" alt="null"/>
                     </td>
-                    <td style="width: 2px; vertical-align: top"/>
+                    <td style="width: 2px; vertical-align: top"></td>
                     <td style="width: auto; vertical-align: top; align-content: start">
                       <strong>{{ comment.username }}</strong>
                       <p>{{ comment.content }}</p>
@@ -108,7 +109,7 @@
           <section id="create-comment">
             <!--        <div class="right-bar" v-if="$store.state.isLogin"></div>-->
             <!--            <div class="box" v-show="!$store.state.isLogin">-->
-            <div class="sep20"/>
+            <div class="sep20"></div>
             <div class="box" v-if="$store.state.isLogin">
               <div class="cell">
                 <strong>Add a new comment</strong>
@@ -130,7 +131,7 @@
             <div class="box" v-else>
               <h1>Please log in </h1>
             </div>
-            <div class="sep20"/>
+            <div class="sep20"></div>
           </section>
         </section>
       </div>
@@ -270,8 +271,6 @@ export default {
 textarea {
   -webkit-writing-mode: horizontal-tb !important;
   text-rendering: auto;
-//color: -internal-light-dark-color(black, white); letter-spacing: normal; word-spacing: normal; text-transform: none; text-indent: 0; text-shadow: none; display: inline-block; text-align: start; -webkit-appearance: textarea;
-//background-color: -internal-light-dark-color(white, black); -webkit-rtl-ordering: logical; flex-direction: column; resize: both; cursor: text; white-space: pre-wrap; overflow-wrap: break-word; margin: 0; font: 400 13.3333px Arial;
   border-width: 1px;
   border-style: solid;
   border-color: rgb(169, 169, 169);

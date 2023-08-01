@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <template>
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="navbar-brand"></div>

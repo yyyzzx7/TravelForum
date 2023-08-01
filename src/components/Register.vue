@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <template>
   <div>
     <template>
@@ -10,23 +11,22 @@
     <template>
       <div id="Wrapper">
         <div class="content">
-
           <div id="main">
             <div class="sep20"></div>
             <div class="box">
               <section class="modal-card-body">
                 <b-field label="E-Mail">
-                  <b-input v-model="email" placeholder="E-Mail" required/>
+                  <b-input v-model="email" placeholder="E-Mail" required></b-input>
                 </b-field>
                 <b-field label="Username">
-                  <b-input v-model="username" placeholder="Username" required/>
+                  <b-input v-model="username" placeholder="Username" required></b-input>
                 </b-field>
                 <b-field label="Password">
-                  <b-input type="password" password-reveal placeholder="Your password" required v-model="password"/>
+                  <b-input type="password" password-reveal placeholder="Your password" required v-model="password"></b-input>
                 </b-field>
                 <b-field label="Confirmed Password">
                   <b-input type="password" password-reveal placeholder="Confirm Your password" required
-                           v-model="password2"/>
+                           v-model="password2"></b-input>
                 </b-field>
               </section>
               <footer class="modal-card-foot">
@@ -97,7 +97,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .box {
   background-color: #fff;
   box-shadow: 0 2px 3px rgba(175, 175, 175, 0.1);

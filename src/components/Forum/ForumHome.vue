@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <template>
-  <div id="forum-home">
-    <TopBar/>
-    <HomeTitle/>
-    <AllPost/>
-  </div>
+  <section id="forum-home">
+    <TopBar></TopBar>
+    <HomeTitle></HomeTitle>
+    <AllPost></AllPost>
+  </section>
 </template>
 
 

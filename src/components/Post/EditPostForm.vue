@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <template>
   <form action="">
     <div class="modal-card">
@@ -6,7 +7,7 @@
         <button
             type="button"
             class="delete"
-            @click="$emit('close')"/>
+            @click="$emit('close')"></button>
       </header>
       <section class="modal-card-body">
         <b-field label="Title">
@@ -62,11 +63,11 @@
       <footer class="modal-card-foot">
         <b-button
             label="Close"
-            @click="$emit('close')"/>
+            @click="$emit('close')"></b-button>
         <b-button
             label="Edit"
             type="is-info"
-            @click="editPost"/>
+            @click="editPost"></b-button>
       </footer>
     </div>
   </form>

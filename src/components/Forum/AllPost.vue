@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <template>
   <div class="tile is-ancestor">
     <div class="tile is-parent">
@@ -7,7 +8,8 @@
             {{ postCount }} records in total
           </p>
         </div>
-        <div class="box" style="margin: 10px; width: 800px;" v-for="(post, index) in posts.slice().reverse()" :key="index">
+        <div class="box" style="margin: 10px; width: 800px;" v-for="(post, index) in posts.slice().reverse()"
+             :key="index">
           <article class="media">
             <div class="media-content">
               <div>
@@ -102,7 +104,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .tile.is-ancestor {
   margin: 0 0 0 0;
 }

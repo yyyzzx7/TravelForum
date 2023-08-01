@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <template>
   <section class="hero is-black">
     <div class="hero-body">
@@ -9,11 +10,12 @@
 <!--    <progress class="progress is-whrite is-small" value="100%" max="30">30%</progress>-->
   </section>
 </template>
+
 <script>
 export default {};
 </script>
 
-<style scoped>
+<style>
 .title {
   text-align: left;
 }
