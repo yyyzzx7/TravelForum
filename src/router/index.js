@@ -31,13 +31,6 @@ const routes = [
         name: "PostDetail",
         component: () => import("../components/Post/PostDetail.vue")
     },
-
-
-    {
-        path: "/postarticle",
-        name: "PostArticle",
-        component: () => import("../components/Post/CreatePostForm.vue")
-    },
     {
         path: "*", component: NotFoundComponent
     },

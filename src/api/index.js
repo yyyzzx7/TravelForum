@@ -11,25 +11,15 @@ const config = {
     }
 };
 
-export const userLogin = (username, password) => {
+export const apiUserLogin = (username, password) => {
     return axios.post(
         "/signIn",
         JSON.stringify({username, password}),
         config
     );
-    // return axios({
-    //     // url: " http://175.178.196.147:9991/signIn",
-    //     url: "/signIn",
-    //     method: "post",
-    //     data: {
-    //         username: username,
-    //         password: password,
-    //     },
-    // });
-    // }
 };
 
-export const userRegister = (username, password, password2, email) => {
+export const apiUserRegister = (username, password, password2, email) => {
     return axios.post(
         "/signUp",
         JSON.stringify({username, password, password2, email}),
@@ -37,7 +27,7 @@ export const userRegister = (username, password, password2, email) => {
     );
 };
 
-export const getAllPost = () => {
+export const apiGetAllPost = () => {
     return axios.get(
         "/get_post",
         JSON.stringify({}),
@@ -45,7 +35,7 @@ export const getAllPost = () => {
     );
 };
 
-export const getAllPostDetail = (post_id) => {
+export const apiGetAllPostDetail = (post_id) => {
     return axios.post(
         "/post_detail",
         JSON.stringify({post_id}),
@@ -53,7 +43,7 @@ export const getAllPostDetail = (post_id) => {
     );
 };
 
-export const getTravelPicture = (city) => {
+export const apiGetTravelPicture = (city) => {
     return axios.get("/mashup/city_pics", {
         params: {
             city: city
@@ -62,7 +52,7 @@ export const getTravelPicture = (city) => {
     });
 }
 
-export const getTravelWeather = (city) => {
+export const apiGetTravelWeather = (city) => {
     return axios.get(
         "/mashup/forecast",
         {
@@ -73,7 +63,7 @@ export const getTravelWeather = (city) => {
         });
 }
 
-export const getUserPost = () => {
+export const apiGetUserPost = () => {
     return axios.get(
         "/post/my_posts",
         {
@@ -82,7 +72,7 @@ export const getUserPost = () => {
         });
 };
 
-export const createComment = (post_id, content) => {
+export const apiCreateComment = (post_id, content) => {
     return axios.post(
         "/comment/make",
         JSON.stringify({post_id, content}),
@@ -90,7 +80,7 @@ export const createComment = (post_id, content) => {
     );
 };
 
-export const createPost = (title, destination, start_date, end_date, tags) => {
+export const apiCreatePost = (title, destination, start_date, end_date, tags) => {
     return axios.post(
         "/post/create",
         JSON.stringify({title, destination, start_date, end_date, tags}),
@@ -98,7 +88,7 @@ export const createPost = (title, destination, start_date, end_date, tags) => {
     );
 }
 
-export const deletePost = (post_id) => {
+export const apiDeletePost = (post_id) => {
     return axios.post(
         "/post/delete",
         JSON.stringify({post_id}),
@@ -106,7 +96,7 @@ export const deletePost = (post_id) => {
     );
 }
 
-export const editPost = (post_id, title, destination, start_date, end_date, tags) => {
+export const apiEditPost = (post_id, title, destination, start_date, end_date, tags) => {
     return axios.post(
         "/post/edit",
         JSON.stringify({post_id, title, destination, start_date, end_date, tags}),
@@ -114,3 +104,13 @@ export const editPost = (post_id, title, destination, start_date, end_date, tags
     );
 }
 
+export const apiSearchPost = (text, type) => {
+    return axios.post(
+        "/search",
+        JSON.stringify({
+            "keywords": text,
+            "type": type
+        }),
+        config
+    );
+}

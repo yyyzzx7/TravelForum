@@ -15,23 +15,22 @@
             <div class="sep20"></div>
             <div class="box">
               <section class="modal-card-body">
+                <b-field label="E-Mail">
+                  <b-input v-model="email" placeholder="E-Mail" required/>
+                </b-field>
                 <b-field label="Username">
-                  <b-input v-model="username" placeholder="Username" required></b-input>
+                  <b-input v-model="username" placeholder="Username" required/>
                 </b-field>
                 <b-field label="Password">
-                  <b-input
-                      type="password"
-                      password-reveal
-                      placeholder="Your password"
-                      required
-                      v-model="password"
-                  ></b-input>
+                  <b-input type="password" password-reveal placeholder="Your password" required v-model="password"/>
                 </b-field>
-
-                <b-checkbox>Remember Me</b-checkbox>
+                <b-field label="Confirmed Password">
+                  <b-input type="password" password-reveal placeholder="Confirm Your password" required
+                           v-model="password2"/>
+                </b-field>
               </section>
               <footer class="modal-card-foot">
-                <button class="button is-primary is-centered" @click="login">Sign In</button>
+                <button class="button is-primary" @click="register">Sign Up</button>
               </footer>
             </div>
           </div>
@@ -45,31 +44,52 @@
 
 
 <script>
-import {apiUserLogin} from "@/api";
+import {apiUserRegister} from "@/api";
 
 export default {
   data() {
     return {
-      password: "",
       username: "",
       email: "",
+      password: "",
+      password2: "",
     };
   },
   methods: {
-    login() {
-      apiUserLogin(this.username, this.password)
+    register() {
+      apiUserRegister(this.username, this.password, this.password2, this.email)
           .then(res => {
-            console.log(res)
-            const {data} = res.data;
-            if (data != null) {
-              this.$store.commit("login", data.username);
+            console.log(res);
+            if (res.status === 200) {
+              this.$buefy.snackbar.open({
+                message: 'Sign up successful!',
+                type: 'is-success',
+                position: 'is-top',
+                duration: 2000,
+                queue: false,
+                actionText: 'OK',
+                indefinite: false,
+                onAction: () => {
+                  console.log('OK');
+                }
+              });
               this.$router.push('./');
-            } else {
-              alert("User not found");
             }
           })
           .catch(() => {
-            alert("User not found");
+            this.$buefy.snackbar.open({
+              message: 'Please try again.',
+              type: 'is-danger',
+              position: 'is-top',
+              duration: 2000,
+              queue: false,
+              actionText: 'OK',
+              indefinite: false,
+              onAction: () => {
+                console.log('OK');
+              }
+            });
+            // alert("failed");
           });
     }
   }
@@ -80,7 +100,7 @@ export default {
 <style scoped>
 .box {
   background-color: #fff;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 3px rgba(175, 175, 175, 0.1);
   border-bottom: 1px solid #e2e2e2;
 }
 
@@ -91,30 +111,6 @@ export default {
   text-align: left;
   border-bottom: 1px solid #e2e2e2;
   overflow: auto;
-}
-
-.cell {
-  padding: 10px;
-  font-size: 14px;
-  line-height: 120%;
-  text-align: left;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-.left-bar {
-  width: 0;
-  float: left;
-}
-
-.Rightbar {
-  width: 270px;
-  float: right;
-  margin-right: 20px;
-}
-
-.main {
-  width: auto;
-  margin: 0 310px 0 20px;
 }
 
 a:active,
@@ -154,20 +150,9 @@ div {
   --box-border-radius: 3px;
 }
 
-#Top {
-  text-align: center;
-  background-color: var(--box-background-color);
-  height: 44px;
-  font-size: 15px;
-  font-weight: 500;
-  background-size: 44px 44px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.22);
-  padding: 0 20px;
-}
-
 #Wrapper {
   text-align: center;
-  background-color: #e2e2e2;
+  background-color: #000000;
   background-repeat: repeat-x;
 }
 
@@ -184,7 +169,7 @@ body {
 
 .content {
   min-width: 400px;
-  max-width: 800px;
+  max-width: 500px;
   margin: 0 auto;
 }
 </style>

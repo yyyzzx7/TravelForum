@@ -1,13 +1,24 @@
 <template>
   <div class="tile is-ancestor">
-    <div class="tile is-parent is-6">
-      <article class="tile is-child ">
-        <div class="box" style="margin: 10px; width: auto" v-for="(post, index) in posts" :key="index">
+    <div class="tile is-parent">
+      <div class="tile is-child">
+        <div class="top-box">
+          <p style="font-weight: bold; font-size: 20px; text-align: center; flex: 1;">
+            {{ postCount }} records in total
+          </p>
+        </div>
+        <div class="box" style="margin: 10px; width: 800px;" v-for="(post, index) in posts.slice().reverse()" :key="index">
           <article class="media">
             <div class="media-content">
               <div>
                 <p>{{ post.username }}</p>
-                <strong style="font-size: 25px">Title: {{ post.title }}</strong>
+                <strong style="font-size: 25px">{{ post.title }}</strong>
+              </div>
+              <div>
+                <strong style="font-size: 18px">Destination: {{ post.destination }}</strong>
+              </div>
+              <div>
+                <strong style="font-size: 18px">Date: {{ post.start_date }} ~ {{ post.end_date }}</strong>
               </div>
               <nav class="level is-mobile">
                 <div class="level-left">
@@ -27,39 +38,50 @@
             </div>
           </article>
         </div>
-      </article>
+      </div>
     </div>
   </div>
 </template>
 
 
 <script>
-import {getAllPost} from "@/api";
+import {apiGetAllPost} from "@/api";
 
 export default {
-  data() {
-    return {
-      posts: [
-        {
-          comment_count: 0,
-          destination: "https://www.baidu.com",
-          start_date: "2020-05-01",
-          end_date: "2020-05-02",
-          tags: [],
-          title: "test",
-          username: "guo",
-          post_id: 0,
-        }
-      ]
-    };
+  computed: {
+    posts() {
+      return this.$store.state.searchResult;
+    },
+    postCount() {
+      return this.$store.state.searchCount;
+    }
   },
+  // data() {
+  //   return {
+  //     posts: [
+  //       {
+  //         comment_count: 0,
+  //         destination: "Default Destination",
+  //         start_date: "2020-05-01",
+  //         end_date: "2020-05-02",
+  //         tags: [],
+  //         title: "Default Title",
+  //         username: "GUO",
+  //         post_id: 0,
+  //       }
+  //     ],
+  //     postCount: 0,
+  //   };
+  // },
   mounted() {
     // get all post after mounted
-    getAllPost()
+    apiGetAllPost()
         .then(res => {
-          const resultData = res.data.data;
-          console.log(resultData);
-          this.posts = resultData.posts;
+          const resultData = res.data.data.posts;
+          const resultCount = res.data.data.total;
+          this.posts = resultData;
+          this.postCount = resultCount;
+          this.$store.commit("setSearchResult", resultData);
         })
         .catch(() => {
         });
@@ -70,7 +92,7 @@ export default {
       this.$router.push({
         path: '/PostDetail',
         query: {
-          post_id: this.posts[index].post_id
+          post_id: this.posts.slice().reverse()[index].post_id
         }
       });
     }
@@ -79,11 +101,16 @@ export default {
 };
 </script>
 
-<style scoped>
 
+<style scoped>
 .tile.is-ancestor {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
+  margin: 0 0 0 0;
 }
+
+.tile.is-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 </style>
