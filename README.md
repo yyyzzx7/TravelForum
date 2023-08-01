@@ -23,9 +23,9 @@ npm run build
 
 ## Screenshots of the project
 
-![img.png](img.png)
+![img.png](screenshot/img.png)
 
-![img_1.png](img_1.png)
+![img_1.png](screenshot/img_1.png)
 
-![img_2.png](img_2.png)
+![img_2.png](screenshot/img_2.png)
 
