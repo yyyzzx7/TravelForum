@@ -31,6 +31,14 @@ The catalog is organized into the following structure:
 - `vue.config.js`: Configuration options for the Vue CLI.
 
 ## Project setup
+The front end project is running on the http://localhost:8080 by default.
+
+The back end project is running on the http://localhost:9991 by default.
+
+### Nodejs version control
+```
+nvm use 16
+```
 
 ### Install dependencies
 ```
