@@ -158,7 +158,7 @@
 
 <script>
 import {apiCreateComment, apiGetAllPostDetail, apiGetTravelPicture, apiGetTravelWeather} from "@/api";
-import LineChart from '../LineChart.vue'
+import LineChart from './LineChart.vue'
 
 export default {
   components: {

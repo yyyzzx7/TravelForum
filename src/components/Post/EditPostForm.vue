@@ -107,7 +107,6 @@ export default {
             if (res.status === 200) {
               alert("Edit Post Success")
               this.$emit('close');
-              // window.location.reload();
             } else {
               alert("Edit Post Failed")
             }
