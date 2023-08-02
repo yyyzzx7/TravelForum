@@ -22,7 +22,8 @@
                   <b-input v-model="username" placeholder="Username" required></b-input>
                 </b-field>
                 <b-field label="Password">
-                  <b-input type="password" password-reveal placeholder="Your password" required v-model="password"></b-input>
+                  <b-input type="password" password-reveal placeholder="Your password" required
+                           v-model="password"></b-input>
                 </b-field>
                 <b-field label="Confirmed Password">
                   <b-input type="password" password-reveal placeholder="Confirm Your password" required
@@ -56,40 +57,44 @@ export default {
     };
   },
   methods: {
+    showUpSnackbar(message, type) {
+      this.$buefy.snackbar.open({
+        message: message,
+        type: type,
+        position: 'is-top',
+        duration: 2000,
+        queue: false,
+        actionText: 'OK',
+        indefinite: false,
+        onAction: () => {
+          console.log('OK');
+        }
+      });
+    },
+
     register() {
+      // Check if all blanks are filled
+      if(this.email === '' || this.username === '' || this.password === '' || this.password2 === '') {
+        this.showUpSnackbar('Please fill in all the blanks!', 'is-danger');
+        return;
+      }
+
+      // Check if password
+      if (this.password !== this.password2) {
+        this.showUpSnackbar('Passwords do not match!', 'is-danger');
+        return;
+      }
+
       apiUserRegister(this.username, this.password, this.password2, this.email)
           .then(res => {
             console.log(res);
             if (res.status === 200) {
-              this.$buefy.snackbar.open({
-                message: 'Sign up successful!',
-                type: 'is-success',
-                position: 'is-top',
-                duration: 2000,
-                queue: false,
-                actionText: 'OK',
-                indefinite: false,
-                onAction: () => {
-                  console.log('OK');
-                }
-              });
+              this.showUpSnackbar('Sign up successful!', 'is-success');
               this.$router.push('./');
             }
           })
           .catch(() => {
-            this.$buefy.snackbar.open({
-              message: 'Please try again.',
-              type: 'is-danger',
-              position: 'is-top',
-              duration: 2000,
-              queue: false,
-              actionText: 'OK',
-              indefinite: false,
-              onAction: () => {
-                console.log('OK');
-              }
-            });
-            // alert("failed");
+            this.showUpSnackbar('Sign up failed! Please try again.', 'is-danger');
           });
     }
   }
